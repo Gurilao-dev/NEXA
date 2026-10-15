@@ -108,24 +108,24 @@ Legenda:
 ---
 
 ## Fase 4 — NEXA Mobile Funcional (Site 2)
-- [ ] Configuração do app `apps/mobile` com Vite, React, TypeScript e Tailwind CSS.
-- [ ] Autenticação Firebase com Google OAuth (persistência de sessão, logout).
-- [ ] Perfil de usuário: criação idempotente do documento `users/{uid}` via backend.
-- [ ] Catálogo de números virtuais:
-  - [ ] Formato brasileiro fictício `+55 (DD) 9XXXX-XXXX` exclusivo do ecossistema.
-  - [ ] Sinalização clara e repetida: "Número NEXA exclusivo para o ecossistema — não recebe chamadas/SMS da rede pública".
-  - [ ] Filtros por DDD, padrões visuais, preço e paginação real no Firestore.
-  - [ ] Detalhes do número e botão de reserva com TTL server-side.
-- [ ] Fluxo de Checkout e Integração com NEXA Pay:
-  - [ ] Criação de pedido autenticado no backend (`POST /v1/mobile/orders`).
-  - [ ] Emissão de ticket temporário e redirecionamento seguro para NEXA Pay.
-  - [ ] Liquidação atômica e provisionamento do número para o `ownerUid`.
-  - [ ] Retorno à NEXA Mobile com polling/verificação ativa do status do pedido no servidor.
-- [ ] Área logada:
-  - [ ] Dashboard com número principal e atalho para abrir NEXA Chat.
-  - [ ] Tela "Meus Números" com listagem, escolha de número principal e histórico de pedidos.
-  - [ ] Gestão de perfil, preferências de notificações e exclusão de dados (LGPD).
-- [ ] Testes E2E do ciclo de compra de número entre Mobile e Pay.
+- [x] Configuração do app `apps/mobile` com Vite, React, TypeScript e Tailwind CSS.
+- [x] Autenticação Firebase com Google OAuth (persistência de sessão, logout).
+- [x] Perfil de usuário: criação idempotente do documento `users/{uid}` via backend.
+- [x] Catálogo de números virtuais:
+  - [x] Formato brasileiro fictício `+55 (DD) 9XXXX-XXXX` exclusivo do ecossistema.
+  - [x] Sinalização clara e repetida: "Número NEXA exclusivo para o ecossistema — não recebe chamadas/SMS da rede pública".
+  - [x] Filtros por DDD, padrões visuais, preço e paginação real no Firestore.
+  - [x] Detalhes do número e botão de reserva com TTL server-side.
+- [x] Fluxo de Checkout e Integração com NEXA Pay:
+  - [x] Criação de pedido autenticado no backend (`POST /v1/mobile/orders`).
+  - [x] Emissão de ticket temporário e redirecionamento seguro para NEXA Pay.
+  - [x] Liquidação atômica e provisionamento do número para o `ownerUid`.
+  - [x] Retorno à NEXA Mobile com polling/verificação ativa do status do pedido no servidor.
+- [x] Área logada:
+  - [x] Dashboard com número principal e atalho para abrir NEXA Chat.
+  - [x] Tela "Meus Números" com listagem, escolha de número principal e histórico de pedidos.
+  - [x] Gestão de perfil, preferências de notificações e exclusão de dados (LGPD).
+- [x] Testes E2E do ciclo de compra de número entre Mobile e Pay.
 
 ---
 

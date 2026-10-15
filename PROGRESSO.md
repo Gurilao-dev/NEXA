@@ -16,7 +16,7 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
 | **1** | **Fundação Backend + Firebase** | **Concluída** | 2026-10-15 | 6 testes Vitest (health, wallets, orders, checkouts) |
 | **2** | **Design System Liquid Glass** | **Concluída** | 2026-10-15 | Compilação tsc, testes de componentes e classes |
 | **3** | **NEXA Pay Completo** | **Concluída** | 2026-10-15 | Build Vite/React, carteira demo R$ 300, extrato, Pix e checkout |
-| 4 | NEXA Mobile Funcional | Aguardando | — | — |
+| **4** | **NEXA Mobile Funcional** | **Concluída** | 2026-10-15 | Build Vite/React, catálogo, checkout com Pay, Meus Números e LGPD |
 | 5 | Landing Cinematográfica da Mobile | Aguardando | — | — |
 | 6 | NEXA Chat MVP Persistente | Aguardando | — | — |
 | 7 | NEXA Chat Avançado | Aguardando | — | — |
@@ -111,8 +111,23 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
   - `npm run typecheck --workspace=@nexa/pay`: 0 erros de tipagem.
   - `npm run build --workspace=@nexa/pay`: geração limpa do bundle de produção (dist/assets/index.js: 305 kB, gzip: 91 kB).
 
+### Fase 4 — NEXA Mobile Funcional (Site 2) (2026-10-15)
+- **Atividades executadas:**
+  1. Criação do workspace `apps/mobile` configurado com Vite, React 19, TypeScript e Tailwind CSS.
+  2. Implementação do `AuthContext` com suporte a autenticação Google via Firebase e sessão de demonstração persistida em `localStorage`.
+  3. Criação da `Navbar` superior com banner de isolamento de rede pública, alternador de abas e botão de acesso direto ao NEXA Chat.
+  4. Criação do `CatalogView` com vitrine de números virtuais brasileiros, filtros dinâmicos por DDD (11 a 91) e padrões visuais (`standard`, `golden`, `platinum`, `consecutive`).
+  5. Criação do `NumberDetailModal` com explicação de linha fictícia, regras de posse e gatilho de criação de pedido (`POST /v1/mobile/orders`) com redirecionamento ao NEXA Pay via ticket temporário.
+  6. Criação do `OrdersView` com detecção de retorno do pagamento (`?orderId=...`), validação ativa do status `PAID` no servidor e celebração visual.
+  7. Criação do `MyNumbersView` com listagem de linhas ativas do usuário, definição de número principal para o chat e atalho de conversa.
+  8. Criação do `AccountView` com dados de perfil, exportação portátil de dados pessoais em JSON (LGPD) e encerramento de sessão.
+  9. Integração com o `ColdStartOverlay` universal para resiliência ao cold start do Render.
+- **Testes executados:**
+  - `npm run typecheck --workspace=@nexa/mobile`: 0 erros de tipagem.
+  - `npm run build --workspace=@nexa/mobile`: geração limpa do bundle de produção (dist/assets/index.js: 299 kB, gzip: 90 kB).
+
 ---
 
 ## 3. Estado Atual e Próximos Passos
-- **O que está pronto:** Fases 0, 1, 2 e 3 completamente operacionais e testadas.
-- **Próxima fase:** **Fase 4 — NEXA Mobile Funcional (Site 2)** (Aplicação Vite + React para a operadora virtual simulada com autenticação Google, catálogo de números, checkout com NEXA Pay, área logada Meus Números e atalho para o chat).
+- **O que está pronto:** Fases 0, 1, 2, 3 e 4 completamente operacionais e testadas.
+- **Próxima fase:** **Fase 5 — Landing Cinematográfica da NEXA Mobile** (Página cinematográfica contínua com mockup 3D original, narrativa visual scroll-scrub de nascimento do número e transformação em chat, timeline e FAQs).

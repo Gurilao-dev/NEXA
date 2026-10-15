@@ -67,20 +67,20 @@ Legenda:
 ---
 
 ## Fase 2 — Design System Liquid Glass
-- [ ] Criação do pacote `packages/ui` compartilhado com componentes React + Tailwind CSS:
-  - [ ] `GlassSurface` (backdrop blur com saturação, borda óptica assimétrica, caustic specular).
-  - [ ] `GlassButton` (feedback tátil spring, estado disabled, loading spinner glass).
-  - [ ] `GlassCard` (variante com contraste otimizado para leitura, sem saturação excessiva).
-  - [ ] `GlassModal` / `GlassDialog` (foco acessível, dismiss por Escape e clique no overlay).
-  - [ ] `GlassNav` / `GlassDock` (barra flutuante com indicador elástico de seleção).
-  - [ ] `GlassInput` / `GlassSearch` (estados foco, erro, máscara e acessibilidade de formulário).
-  - [ ] `GlassToast` (notificações in-app acessíveis com `aria-live`).
-  - [ ] `GlassTooltip` / `GlassPopover` (posicionamento dinâmico sem clipping).
-  - [ ] `ColdStartOverlay` (tela full-screen para despertar do Render com animação líquida e retry backoff).
-- [ ] Suporte a temas Claro, Escuro e Sistema com transições suaves.
-- [ ] Modos de acessibilidade: `prefers-reduced-motion` e `prefers-reduced-transparency`.
-- [ ] Verificação de contraste WCAG AA em todas as superfícies com texto.
-- [ ] Testes unitários com Vitest e React Testing Library para componentes do design system.
+- [x] Criação do pacote `packages/ui` compartilhado com componentes React + Tailwind CSS:
+  - [x] `GlassSurface` (backdrop blur com saturação, borda óptica assimétrica, caustic specular).
+  - [x] `GlassButton` (feedback tátil spring, estado disabled, loading spinner glass).
+  - [x] `GlassCard` (variante com contraste otimizado para leitura, sem saturação excessiva).
+  - [x] `GlassModal` / `GlassDialog` (foco acessível, dismiss por Escape e clique no overlay).
+  - [x] `GlassNav` / `GlassDock` (barra flutuante com indicador elástico de seleção).
+  - [x] `GlassInput` / `GlassSearch` (estados foco, erro, máscara e acessibilidade de formulário).
+  - [x] `GlassToast` (notificações in-app acessíveis com `aria-live`).
+  - [x] `GlassTooltip` / `GlassPopover` (posicionamento dinâmico sem clipping).
+  - [x] `ColdStartOverlay` (tela full-screen para despertar do Render com animação líquida e retry backoff).
+- [x] Suporte a temas Claro, Escuro e Sistema com transições suaves.
+- [x] Modos de acessibilidade: `prefers-reduced-motion` e `prefers-reduced-transparency`.
+- [x] Verificação de contraste WCAG AA em todas as superfícies com texto.
+- [x] Testes unitários com Vitest e React Testing Library para componentes do design system.
 
 ---
 

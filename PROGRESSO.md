@@ -14,7 +14,7 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
 | :--- | :--- | :---: | :---: | :---: |
 | **0** | **Engenharia do Projeto** | **Concluída** | 2026-10-15 | Compilação de pacotes, linters, schemas |
 | **1** | **Fundação Backend + Firebase** | **Concluída** | 2026-10-15 | 6 testes Vitest (health, wallets, orders, checkouts) |
-| 2 | Design System Liquid Glass | Aguardando | — | — |
+| **2** | **Design System Liquid Glass** | **Concluída** | 2026-10-15 | Compilação tsc, testes de componentes e classes |
 | 3 | NEXA Pay Completo | Aguardando | — | — |
 | 4 | NEXA Mobile Funcional | Aguardando | — | — |
 | 5 | Landing Cinematográfica da Mobile | Aguardando | — | — |
@@ -78,8 +78,25 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
   - `npm run build --workspace=apps/api`: compilação limpa de todos os módulos.
   - `npm run test --workspace=apps/api`: 6/6 testes aprovados com sucesso (fluxo ponta a ponta de pedido, checkout, débito, ativação e mensageria).
 
+### Fase 2 — Design System Liquid Glass (2026-10-15)
+- **Atividades executadas:**
+  1. Criação do workspace `@nexa/ui` com suporte a React 19, Lucide Icons e Tailwind CSS.
+  2. Implementação do `BrandLogo`: logotipo vetorial prismático tridimensional em SVG puro com facetas refrativas e variações para Pay, Mobile e Chat.
+  3. Implementação do `GlassSurface`: componente polimórfico fundamental com camadas de backdrop-filter, bordas especulares assimétricas e realce cáustico.
+  4. Implementação do `GlassButton`: botão com microcompressão spring no clique, reflexo especular direcional e spinner de carregamento.
+  5. Implementação do `GlassCard`: cartão otimizado para leitura com contraste WCAG AA, cabeçalho e rodapé desacoplados.
+  6. Implementação do `GlassInput`: campo de formulário com rótulo acessível, anel de foco em gradiente neon e suporte a ícones.
+  7. Implementação do `GlassModal`: diálogo modal com backdrop blur expansivo, fechamento por tecla Escape e clique externo.
+  8. Implementação do `GlassDock`: barra de navegação flutuante com pastilha elástica de seleção e suporte a badges.
+  9. Implementação do `GlassToast`: notificações in-app acessíveis com `role="status"` e ícones semânticos vetoriais.
+  10. Implementação do `ColdStartOverlay`: tela universal em Liquid Glass com anel líquido refrativo e mensagens rotativas para interceptar e suavizar o despertar do Render.
+- **Testes executados:**
+  - `npm run typecheck --workspace=@nexa/ui`: 0 erros de tipagem.
+  - `npm run build --workspace=@nexa/ui`: compilação limpa gerando arquivos `.d.ts` e `.js`.
+  - `npm run test --workspace=@nexa/ui`: testes unitários de classes e componentes aprovados com sucesso.
+
 ---
 
 ## 3. Estado Atual e Próximos Passos
-- **O que está pronto:** Fases 0 e 1 completamente operacionais e testadas.
-- **Próxima fase:** **Fase 2 — Design System Liquid Glass** (Pacote `packages/ui` com componentes React compartilhados, tokens visuais, acessibilidade e temas).
+- **O que está pronto:** Fases 0, 1 e 2 completamente operacionais e testadas.
+- **Próxima fase:** **Fase 3 — NEXA Pay Completo (Site 1)** (Aplicação Vite + React para o banco virtual simulado com saldo de R$ 300,00, extrato, Pix simulado, comprovantes e tela de checkout integrado).

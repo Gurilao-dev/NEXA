@@ -1,0 +1,144 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isConversationMember(conversationId) {
+      return isAuthenticated() && 
+        exists(/databases/$(database)/documents/conversations/$(conversationId)/members/$(request.auth.uid));
+    }
+
+    // Default: Bloqueio total por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Perfil Central de Usuário
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      // Alterações cadastrais e de telefone são autorizadas exclusivamente pelo backend
+      allow write: if false;
+
+      match /preferences/{doc} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /numbers/{numberId} {
+        allow read: if isOwner(userId);
+        allow write: if false;
+      }
+    }
+
+    // Catálogo e Inventário de Números Virtuais
+    match /numbers/{numberId} {
+      // Leitura pública permitida para consulta da vitrine da operadora
+      allow read: if true;
+      // Modificações de reserva, status e proprietário apenas pelo backend via Admin SDK
+      allow write: if false;
+    }
+
+    // Reservas temporárias
+    match /numberReservations/{reservationId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Pedidos da Operadora e Tickets de Checkout
+    match /orders/{orderId} {
+      allow read: if isAuthenticated() && resource.data.ownerUid == request.auth.uid;
+      allow write: if false;
+    }
+
+    match /checkouts/{checkoutId} {
+      // Checkout é verificado pelo backend; cliente não acessa diretamente
+      allow read, write: if false;
+    }
+
+    // Carteiras e Ledger do Banco Simulado (NEXA Pay)
+    // SEGURANÇA MÁXIMA: Escrita direta do cliente é terminantemente PROIBIDA
+    match /wallets/{walletId} {
+      allow read: if isAuthenticated() && (request.auth.uid == walletId || resource.data.guestUid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /walletLedger/{entryId} {
+      allow read: if isAuthenticated() && (resource.data.sourceUid == request.auth.uid || resource.data.destinationUid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /walletOperations/{operationId} {
+      allow read, write: if false;
+    }
+
+    match /paymentReceipts/{receiptId} {
+      allow read: if isAuthenticated() && (resource.data.payerUid == request.auth.uid || resource.data.payeeUid == request.auth.uid);
+      allow write: if false;
+    }
+
+    // NEXA Chat — Perfis e Contatos
+    match /chatProfiles/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    match /contacts/{userId}/items/{contactId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Conversas e Mensagens
+    match /conversations/{conversationId} {
+      allow read: if isConversationMember(conversationId);
+      allow write: if false;
+
+      match /members/{memberId} {
+        allow read: if isConversationMember(conversationId);
+        allow write: if false;
+      }
+
+      match /messages/{messageId} {
+        allow read: if isConversationMember(conversationId);
+        // Persistência autoritativa única via API Backend (Admin SDK)
+        allow write: if false;
+      }
+
+      match /events/{eventId} {
+        allow read: if isConversationMember(conversationId);
+        allow write: if false;
+      }
+    }
+
+    // Mídia e Anexos
+    match /attachments/{attachmentId} {
+      allow read: if isAuthenticated() && (resource.data.ownerUid == request.auth.uid || isConversationMember(resource.data.conversationId));
+      allow write: if false;
+    }
+
+    // Chamadas WebRTC
+    match /calls/{callId} {
+      allow read: if isAuthenticated() && (resource.data.callerUid == request.auth.uid || resource.data.targetUid == request.auth.uid);
+      allow write: if false;
+    }
+
+    // Moderação, Denúncias e Auditoria
+    match /reports/{reportId} {
+      allow create: if isAuthenticated();
+      allow read, update, delete: if false;
+    }
+
+    match /blocks/{userId}/items/{blockedUid} {
+      allow read, write: if isOwner(userId);
+    }
+
+    match /auditLogs/{logId} {
+      allow read, write: if false;
+    }
+  }
+}

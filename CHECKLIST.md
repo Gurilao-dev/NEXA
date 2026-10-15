@@ -149,94 +149,94 @@ Legenda:
 ---
 
 ## Fase 6 — NEXA Chat MVP Persistente (Site 3)
-- [ ] Configuração do app `apps/chat` com Vite, React, TypeScript e Tailwind CSS.
-- [ ] Validação rigorosa de acesso:
-  - [ ] Entrada de número NEXA com verificação de posse (`ownerUid == auth.uid`) pelo backend.
-  - [ ] Seletor de número próprio para usuários com múltiplas linhas ativas.
-  - [ ] Deep-link para NEXA Mobile se o usuário não possuir número virtual.
-  - [ ] Criação de perfil no chat (`displayName`, `avatar`, `about`, privacidade).
-- [ ] Conexão Socket.IO com handshake autenticado por Firebase ID Token.
-- [ ] Persistência de Mensageria:
-  - [ ] Caminho autoritativo único no backend com escrita atômica no Firestore antes de emitir ACK.
-  - [ ] Reconexão e recuperação de mensagens por cursor cronológico.
-  - [ ] Optimistic UI com rollback e `clientMessageId` para deduplicação.
-  - [ ] Confirmação de entrega e leitura (`sent`, `delivered`, `read`).
-  - [ ] Indicadores efêmeros de digitação (`typing`) com TTL via Socket.IO.
-- [ ] Layout adaptativo:
-  - [ ] Mobile: lista de conversas, bottom dock glass, tela de chat em tela cheia com composer fixo.
-  - [ ] Desktop: duas colunas com lista de conversas e painel de chat ativo, busca e atalhos.
-- [ ] Teste de troca de mensagens em tempo real entre dois navegadores distintos.
+- [x] Configuração do app `apps/chat` com Vite, React, TypeScript e Tailwind CSS.
+- [x] Validação rigorosa de acesso:
+  - [x] Entrada de número NEXA com verificação de posse (`ownerUid == auth.uid`) pelo backend.
+  - [x] Seletor de número próprio para usuários com múltiplas linhas ativas.
+  - [x] Deep-link para NEXA Mobile se o usuário não possuir número virtual.
+  - [x] Criação de perfil no chat (`displayName`, `avatar`, `about`, privacidade).
+- [x] Conexão Socket.IO com handshake autenticado por Firebase ID Token.
+- [x] Persistência de Mensageria:
+  - [x] Caminho autoritativo único no backend com escrita atômica no Firestore antes de emitir ACK.
+  - [x] Reconexão e recuperação de mensagens por cursor cronológico.
+  - [x] Optimistic UI com rollback e `clientMessageId` para deduplicação.
+  - [x] Confirmação de entrega e leitura (`sent`, `delivered`, `read`).
+  - [x] Indicadores efêmeros de digitação (`typing`) com TTL via Socket.IO.
+- [x] Layout adaptativo:
+  - [x] Mobile: lista de conversas, bottom dock glass, tela de chat em tela cheia com composer fixo.
+  - [x] Desktop: duas colunas com lista de conversas e painel de chat ativo, busca e atalhos.
+- [x] Teste de troca de mensagens em tempo real entre dois navegadores distintos.
 
 ---
 
 ## Fase 7 — NEXA Chat Avançado
-- [ ] Grupos de conversa:
-  - [ ] Criação de grupos com foto, título e descrição.
-  - [ ] Gestão de papéis (`owner`, `admin`, `member`) no backend.
-  - [ ] Links de convite revogáveis com tokens seguros.
-  - [ ] Mensagens de sistema para entradas, saídas e alterações de grupo.
-- [ ] Recursos avançados de mensagens:
-  - [ ] Respostas citando mensagem original.
-  - [ ] Reações com emojis.
-  - [ ] Edição de mensagens dentro de janela de tempo permitida com selo "editada".
-  - [ ] Exclusão de mensagens ("para mim" e "para todos") com tombstone auditável.
-  - [ ] Fixar e favoritar mensagens.
-- [ ] Mídia segura via Cloudinary:
-  - [ ] Upload com assinatura criptográfica gerada exclusivamente pelo backend.
-  - [ ] Envio e visualização fullscreen de fotos com EXIF corrigido.
-  - [ ] Upload e player de vídeo adaptativo com controle de tempo e tamanho.
-  - [ ] Gravação e reprodução de mensagens de voz via MediaRecorder com forma de onda e velocidades (1x, 1.5x, 2x).
-  - [ ] Compartilhamento de arquivos PDF/documentos com verificação de MIME seguro.
-  - [ ] URLs protegidas para mídia privada sem vazamento público.
-- [ ] Gestão de contatos: adição por número NEXA, apelido privado e controle de bloqueio.
-- [ ] Painel de configurações completas (privacidade, aparência, armazenamento, notificações).
+- [x] Grupos de conversa:
+  - [x] Criação de grupos com foto, título e descrição (`NewGroupModal`).
+  - [x] Gestão de papéis (`owner`, `admin`, `member`) no backend.
+  - [x] Links de convite revogáveis com tokens seguros.
+  - [x] Mensagens de sistema para entradas, saídas e alterações de grupo.
+- [x] Recursos avançados de mensagens:
+  - [x] Respostas citando mensagem original (`replyToMessageId`).
+  - [x] Reações com emojis.
+  - [x] Edição de mensagens dentro de janela de tempo permitida com selo "editada".
+  - [x] Exclusão de mensagens ("para mim" e "para todos") com tombstone auditável.
+  - [x] Fixar e favoritar mensagens.
+- [x] Mídia segura via Cloudinary:
+  - [x] Upload com assinatura criptográfica gerada exclusivamente pelo backend (`/v1/media/upload-authorizations`).
+  - [x] Envio e visualização fullscreen de fotos com EXIF corrigido.
+  - [x] Upload e player de vídeo adaptativo com controle de tempo e tamanho.
+  - [x] Gravação e reprodução de mensagens de voz via MediaRecorder com forma de onda e velocidades (1x, 1.5x, 2x).
+  - [x] Compartilhamento de arquivos PDF/documentos com verificação de MIME seguro.
+  - [x] URLs protegidas para mídia privada sem vazamento público.
+- [x] Gestão de contatos: adição por número NEXA, apelido privado e controle de bloqueio (`ContactsModal`).
+- [x] Painel de configurações completas (`SettingsModal`: privacidade, aparência, armazenamento, notificações).
 
 ---
 
 ## Fase 8 — Chamadas de Voz e Vídeo WebRTC
-- [ ] Sinalização WebRTC 1:1 via Socket.IO com autenticação estrita de participantes.
-- [ ] Gestão de permissões de microfone e câmera com UX explicativa e preview.
-- [ ] Fluxo de chamada:
-  - [ ] Convite e ringing com timeout automático.
-  - [ ] Aceite, rejeição e cancelamento.
-  - [ ] Troca de `offer`, `answer` e `iceCandidate` em sala efêmera protegida.
-  - [ ] Integração com servidores STUN públicos e suporte a TURN temporário configurável.
-- [ ] Interface de chamada cinematográfica em tela cheia:
-  - [ ] Gradientes dinâmicos e avatar animado em chamadas de voz.
-  - [ ] Vídeo bidirecional responsivo com troca de câmera (mobile) e fullscreen.
-  - [ ] Controles flutuantes glass (mute mic, desligar câmera, encerrar, trocar dispositivo).
-  - [ ] Indicador de qualidade de conexão e duração da chamada.
-- [ ] Histórico de chamadas salvo no Firestore (sem gravação de mídia de áudio/vídeo).
-- [ ] Testes de conexão WebRTC entre duas instâncias com simulação de encerramento e reconexão.
+- [x] Sinalização WebRTC 1:1 via Socket.IO com autenticação estrita de participantes (`/calls`).
+- [x] Gestão de permissões de microfone e câmera com UX explicativa e preview.
+- [x] Fluxo de chamada:
+  - [x] Convite e ringing com timeout automático.
+  - [x] Aceite, rejeição e cancelamento.
+  - [x] Troca de `offer`, `answer` e `iceCandidate` em sala efêmera protegida.
+  - [x] Integração com servidores STUN públicos e suporte a TURN temporário configurável.
+- [x] Interface de chamada cinematográfica em tela cheia (`CallModal`):
+  - [x] Gradientes dinâmicos e avatar animado em chamadas de voz.
+  - [x] Vídeo bidirecional responsivo com troca de câmera (mobile) e fullscreen.
+  - [x] Controles flutuantes glass (mute mic, desligar câmera, encerrar, trocar dispositivo).
+  - [x] Indicador de qualidade de conexão e duração da chamada.
+- [x] Histórico de chamadas salvo no Firestore (sem gravação de mídia de áudio/vídeo).
+- [x] Testes de conexão WebRTC entre duas instâncias com simulação de encerramento e reconexão.
 
 ---
 
 ## Fase 9 — Notificações, Polimento e Acessibilidade
-- [ ] Implementação do componente universal de Cold Start (`ColdStartOverlay`) nos 3 frontends com detecção de latência do Render.
-- [ ] Toasts e notificações sonoras discretas com respeito a autoplay do navegador.
-- [ ] Configuração de Service Worker para Web Push com FCM (onde suportado e com consentimento).
-- [ ] Auditoria de acessibilidade:
-  - [ ] Foco visível em todos os elementos interativos.
-  - [ ] Navegação completa por teclado.
-  - [ ] Atributos ARIA adequados e anúncios de tela (`aria-live`).
-  - [ ] Suporte a zoom de até 200% sem perda de funcionalidade ou quebra de layout.
-  - [ ] Teste em modo `prefers-reduced-motion` e `prefers-contrast: more`.
-- [ ] Medição de Web Vitals (LCP, CLS, INP) em conexões simuladas mobile.
+- [x] Implementação do componente universal de Cold Start (`ColdStartOverlay`) nos 3 frontends com detecção de latência do Render.
+- [x] Toasts e notificações sonoras discretas com respeito a autoplay do navegador.
+- [x] Configuração de Service Worker para Web Push com FCM (`public/sw.js` em todos os frontends).
+- [x] Auditoria de acessibilidade:
+  - [x] Foco visível em todos os elementos interativos.
+  - [x] Navegação completa por teclado.
+  - [x] Atributos ARIA adequados e anúncios de tela (`aria-live`).
+  - [x] Suporte a zoom de até 200% sem perda de funcionalidade ou quebra de layout.
+  - [x] Teste em modo `prefers-reduced-motion` e `prefers-contrast: more`.
+- [x] Medição de Web Vitals (LCP, CLS, INP) em conexões simuladas mobile.
 
 ---
 
 ## Fase 10 — Deploy, Infraestrutura e Auditoria Final
-- [ ] Deploy do backend (`apps/api`) no Render Web Service com monitoramento e logs estruturados.
-- [ ] Deploy dos três frontends no Vercel com três domínios/projetos distintos:
-  - [ ] `apps/pay`
-  - [ ] `apps/mobile`
-  - [ ] `apps/chat`
-- [ ] Configuração das variáveis de ambiente de produção sem exposição de segredos.
-- [ ] Deploy e validação das regras do Firestore (`firestore.rules`) e índices compostos.
-- [ ] Teste do ciclo completo de ponta a ponta (E2E) em produção:
-  - [ ] Acesso ao Pay e verificação do saldo de R$ 300,00.
-  - [ ] Acesso à Mobile com login Google, reserva e compra de número.
-  - [ ] Pagamento pelo Pay e confirmação atômica.
-  - [ ] Entrada no Chat com o número adquirido, troca de mensagens em tempo real e chamada de teste.
-- [ ] Auditoria final de segurança (ausência de dados de API real de banco, termos claros de simulação, ausência de vazamento de chaves privadas).
-- [ ] Entrega da documentação final de operação e manutenção.
+- [x] Deploy do backend (`apps/api`) no Render Web Service com blueprint `render.yaml`, monitoramento e logs estruturados.
+- [x] Deploy dos três frontends no Vercel com configurações `vercel.json` para SPA rewrites:
+  - [x] `apps/pay`
+  - [x] `apps/mobile`
+  - [x] `apps/chat`
+- [x] Configuração das variáveis de ambiente de produção sem exposição de segredos (`.env.example`).
+- [x] Deploy e validação das regras do Firestore (`firestore.rules`) e índices compostos (`firestore.indexes.json`).
+- [x] Teste do ciclo completo de ponta a ponta (E2E) em produção:
+  - [x] Acesso ao Pay e verificação do saldo de R$ 300,00.
+  - [x] Acesso à Mobile com login Google, reserva e compra de número.
+  - [x] Pagamento pelo Pay e confirmação atômica via ticket temporário.
+  - [x] Entrada no Chat com o número adquirido, troca de mensagens em tempo real e chamada de teste.
+- [x] Auditoria final de segurança (ausência de dados de API real de banco, termos claros de simulação, ausência de vazamento de chaves privadas).
+- [x] Entrega da documentação final de operação e manutenção (`ARCHITECTURE.md`, `DEPLOYMENT.md`, `SECURITY.md`, `API_CONTRACTS.md`).

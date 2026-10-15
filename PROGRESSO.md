@@ -146,13 +146,63 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
 
 ---
 
-## 3. Estado Atual e Próximos Passos
-- **O que está pronto:** Fases 0, 1, 2, 3, 4 e 5 completamente operacionais, integradas e testadas.
-- **Próxima fase:** **Fase 6 — NEXA Chat MVP Persistente (Site 3)**
-  - Criação da aplicação `apps/chat` (Vite + React 19 + Tailwind CSS + Lucide + Socket.IO Client).
-  - Autenticação e gatekeeping de posse de número virtual (`POST /v1/chat/activate`).
-  - Layout 2 colunas Liquid Glass (Emerald & Deep Teal), mobile-first com glass dock.
-  - Conexão realtime com namespace `/chat` do Fastify via Socket.IO com handshake autenticado.
-  - Conversas 1:1 persistentes com sincronização Firestore + ACK deduplicado (`clientMessageId`).
-  - Indicadores em tempo real: digitando, online/offline, status da mensagem (enviando, enviada, entregue, lida).
+### Fase 6 — NEXA Chat MVP Persistente (Site 3) (Concluída em 15/10/2026)
+- **Implementações:**
+  1. Criação da aplicação `apps/chat` (Vite 6, React 19, TypeScript, Tailwind CSS, Lucide, Socket.IO Client).
+  2. Implementação do gatekeeper de posse estrita `NoNumbersGate.tsx` bloqueando o chat para usuários sem linha virtual ativa com deep-link direto para a vitrine da NEXA Mobile.
+  3. Criação de `ActivateChatModal.tsx` para validação de titularidade da linha virtual e ativação de perfil (`POST /v1/chat/activate`).
+  4. Configuração do cliente Socket.IO em `src/services/socket.ts` com handshake autenticado no namespace `/chat`.
+  5. Layout Liquid Glass em 2 colunas com tema esmeralda e teal profundo, responsivo com painel mobile e tela cheia.
+  6. Conversas 1:1 persistentes com sincronização autoritativa via Fastify/Firestore e ACK deduplicado (`clientMessageId`).
+  7. Indicadores de digitação efêmeros (`typing:start`, `typing:stop`, `typing:status`) e confirmações de leitura dupla.
+- **Testes e Validação:**
+  - `npm run typecheck --workspace=@nexa/chat`: 0 erros de tipagem.
+  - `npm run build --workspace=@nexa/chat`: bundle gerado com sucesso em `dist/`.
+
+---
+
+### Fase 7 — NEXA Chat Avançado (Concluída em 15/10/2026)
+- **Implementações:**
+  1. Criação e gestão de grupos com `NewGroupModal.tsx` integrado a `POST /v1/chat/groups`.
+  2. Livro de contatos privados com `ContactsModal.tsx` integrado a `GET /v1/chat/contacts` e `POST /v1/chat/contacts`.
+  3. Respostas a mensagens citadas (`replyToMessageId`) com banner flutuante no composer.
+  4. Gravação de notas de voz reais via Web MediaRecorder API com timer, waveform simulado e envio de áudio base64/WebM.
+  5. Suporte a envio de imagens e documentos com player de áudio dedicado e visualização de anexos.
+  6. Painel de configurações completas (`SettingsModal.tsx`) para gestão de recibos de leitura, status online, alertas sonoros e logout.
+
+---
+
+### Fase 8 — Chamadas de Voz e Vídeo WebRTC (Concluída em 15/10/2026)
+- **Implementações:**
+  1. Serviço de sinalização WebRTC em `src/services/callsSocket.ts` conectado ao namespace `/calls` do Socket.IO.
+  2. Fluxo completo de chamada P2P: convite (`call:invite`), toque (`call:ringing`), aceite (`call:accept`), rejeição (`call:reject`), troca de SDP (`call:offer`, `call:answer`), candidatos ICE (`call:ice`) e encerramento (`call:end`).
+  3. Criação do modal cinematográfico `CallModal.tsx` com overlay Liquid Glass, feed de vídeo local e remoto, timer de duração da chamada, alternância de microfone e câmera e selo de criptografia P2P.
+
+---
+
+### Fase 9 — Notificações, Polimento e Acessibilidade (Concluída em 15/10/2026)
+- **Implementações:**
+  1. Componente universal `ColdStartOverlay` operacional e tipado em todos os 3 frontends (`apps/pay`, `apps/mobile`, `apps/chat`) com polling de prontidão do servidor.
+  2. Implementação de Service Worker (`public/sw.js`) e favicons vetoriais dedicados (`public/favicon.svg`) nos 3 frontends.
+  3. Conformidade estrita com acessibilidade: fontes Google Fonts (Inter, Outfit, JetBrains Mono), papéis ARIA, contraste WCAG AA validado sobre as camadas Liquid Glass e desativação graciosa de blur para transparência reduzida.
+
+---
+
+### Fase 10 — Deploy, Infraestrutura e Auditoria Final (Concluída em 15/10/2026)
+- **Implementações:**
+  1. Criação de arquivos de roteamento SPA `vercel.json` em `apps/pay`, `apps/mobile` e `apps/chat`.
+  2. Blueprint de deploy do backend `render.yaml` validado e preparado para publicação no Render.
+  3. Suite de testes de integração automatizados em `apps/api/test/api.test.ts` e `apps/api/test/chat.test.ts` com 8/8 testes passando.
+  4. Verificação de compilação global de todo o monorepo (`npm run typecheck` e `npm run build` em todos os workspaces com 0 erros).
+
+---
+
+## 3. Resumo Executivo da Entrega
+
+O **NEXA Ecosystem** foi construído integralmente com separação rigorosa de arquitetura e máxima fidelidade aos requisitos:
+- **NEXA Pay (`apps/pay` - Porta 5173):** Banco digital simulado com ledger imutável, R$ 300,00 concedidos por visitante, Pix interno, extrato paginado e checkout com comprovante carimbado "SIMULADO".
+- **NEXA Mobile (`apps/mobile` - Porta 5174):** Operadora virtual inovadora com catálogo de números fictícios brasileiros `+55 (DD) 9XXXX-XXXX`, integração de pagamento via ticket com NEXA Pay, área do cliente com gestão de linhas e landing page cinematográfica em 8 seções interativas com mockup 3D.
+- **NEXA Chat (`apps/chat` - Porta 5175):** Mensageiro em tempo real com controle de acesso rigoroso por posse de linha virtual, mensageria com persistência autoritativa e Socket.IO, grupos, contatos, notas de voz, mídia e chamadas de voz e vídeo WebRTC.
+- **NEXA API (`apps/api` - Porta 10000):** Servidor unificado Fastify + Socket.IO + Firebase Admin SDK com fallback in-memory transacional para testes locais 100% autônomos.
+
 

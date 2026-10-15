@@ -6,6 +6,7 @@ export type NumberStatus =
   | 'AVAILABLE' 
   | 'RESERVED' 
   | 'SOLD' 
+  | 'ACTIVE'
   | 'SUSPENDED';
 
 export type NumberPattern = 'standard' | 'golden' | 'platinum' | 'consecutive';

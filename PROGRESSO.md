@@ -13,7 +13,7 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
 | Fase | Título | Status | Data de Conclusão | Testes Validados |
 | :--- | :--- | :---: | :---: | :---: |
 | **0** | **Engenharia do Projeto** | **Concluída** | 2026-10-15 | Compilação de pacotes, linters, schemas |
-| 1 | Fundação Backend + Firebase | Aguardando | — | — |
+| **1** | **Fundação Backend + Firebase** | **Concluída** | 2026-10-15 | 6 testes Vitest (health, wallets, orders, checkouts) |
 | 2 | Design System Liquid Glass | Aguardando | — | — |
 | 3 | NEXA Pay Completo | Aguardando | — | — |
 | 4 | NEXA Mobile Funcional | Aguardando | — | — |
@@ -55,10 +55,31 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
   - Validação estática de regras do Firestore e sintaxe Zod.
 - **Commits:**
   - `83db494` — `chore(fase-0): initial project engineering setup and architecture baseline`
+  - `c4c3f19` — `docs: update PROGRESSO.md with initial commit hash`
+
+### Fase 1 — Fundação Backend + Firebase (2026-10-15)
+- **Atividades executadas:**
+  1. Criação do workspace `apps/api` estruturado com Fastify 5, TypeScript (NodeNext) e Socket.IO.
+  2. Implementação do Firebase Admin SDK com adaptador resiliente de transações locais em memória para garantir desenvolvimento e testes 100% autônomos sem bloqueio por credenciais ausentes.
+  3. Configuração dos middlewares: CORS dinâmico com allowlist para os 3 frontends, Helmet para cabeçalhos HTTP, Rate-limiting por IP/sessão, Bearer JWT com extração segura do `uid` e transformador de erros RFC 7807 Problem Details.
+  4. Endpoints de saúde e inicialização: `GET /health/live`, `GET /health/ready` e `GET /v1/public/config`.
+  5. Módulo `wallets`: criação de sessão de visitante com concessão inicial de R$ 300,00 (30.000 centavos), extrato imutável no ledger, consulta de comprovante e transferências Pix simuladas com prevenção de saldo negativo e self-transfer.
+  6. Módulo `numbers`: catálogo de 20 números virtuais brasileiros realistas com auto-seeding, filtros por DDD e padrões (`standard`, `golden`, `platinum`).
+  7. Módulo `orders`: reserva atômica de números virtuais com TTL de 15 minutos e emissão de ticket opaco de checkout.
+  8. Módulo `checkouts`: visualização pública mínima e liquidação atômica em transação Firestore com débito da carteira visitante e provisionamento imediato do número ao `uid` do comprador.
+  9. Módulo `chat`: ativação de perfil vinculada à posse de número ativo comprado, persistência autoritativa de mensagens no Firestore e gestão de conversas/contatos.
+  10. Módulo `calls`: histórico e atualização de estados de chamada WebRTC.
+  11. Módulo `media`: emissão de autorizações de upload direto seguro com assinatura HMAC-SHA1 para o Cloudinary.
+  12. Realtime Socket.IO: namespaces `/chat` (salas, envio, confirmação ACK, typing e recibos de leitura) e `/calls` (sinalização WebRTC: invite, ringing, offer, answer, ice, end).
+  13. Criação do manifesto de deploy no Render (`render.yaml`).
+  14. Elaboração da suíte de testes de integração com Vitest (`apps/api/test/api.test.ts`).
+- **Testes executados:**
+  - `npm run typecheck --workspace=apps/api`: 0 erros de tipagem.
+  - `npm run build --workspace=apps/api`: compilação limpa de todos os módulos.
+  - `npm run test --workspace=apps/api`: 6/6 testes aprovados com sucesso (fluxo ponta a ponta de pedido, checkout, débito, ativação e mensageria).
 
 ---
 
 ## 3. Estado Atual e Próximos Passos
-- **O que está pronto:** Toda a infraestrutura de engenharia do repositório, documentação executável, contratos de API, tokens de design, regras do Firestore e modelos de domínio TypeScript e Zod.
-- **O que falta para o ecossistema completo:** Implementação dos serviços de backend (Fase 1), componentes de UI Liquid Glass (Fase 2) e as aplicações funcionais (Fases 3 a 8).
-- **Próxima fase:** **Fase 1 — Fundação Backend + Firebase** (Fastify, Socket.IO, Firebase Admin SDK, endpoints de saúde, tratamento de cold start e módulos essenciais de auth e ledger).
+- **O que está pronto:** Fases 0 e 1 completamente operacionais e testadas.
+- **Próxima fase:** **Fase 2 — Design System Liquid Glass** (Pacote `packages/ui` com componentes React compartilhados, tokens visuais, acessibilidade e temas).

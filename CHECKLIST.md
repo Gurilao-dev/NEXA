@@ -43,26 +43,26 @@ Legenda:
 ---
 
 ## Fase 1 — Fundação Backend + Firebase
-- [ ] Estruturação de `apps/api` (Fastify + TypeScript + Socket.IO anexado).
-- [ ] Configuração do Firebase Admin SDK com inicialização segura e fallback para emulador local.
-- [ ] Middlewares fundamentais:
-  - [ ] CORS configurado exclusivamente para as origens dos 3 frontends e localhost em dev.
-  - [ ] Security headers (Helmet/CSP adaptada, HSTS, no-sniff, frame-ancestors).
-  - [ ] Rate limiting adaptativo por IP e por sessão/token.
-  - [ ] Autenticação Firebase ID Token (Bearer) com extração segura do `uid`.
-  - [ ] Validador Zod universal para requests com RFC 7807 Problem Details.
-  - [ ] Logger estruturado (Pino) com mascaramento de tokens e PII.
-- [ ] Endpoints de saúde e inicialização:
-  - [ ] `GET /health/live` (status do processo HTTP).
-  - [ ] `GET /health/ready` (validação de conexão com Firestore e dependências críticas).
-  - [ ] `GET /v1/public/config` (apenas parâmetros públicos do ecossistema).
-- [ ] Estrutura modular:
-  - [ ] Módulo `auth` (verificação de tokens e emissão de sessões anônimas/visitante).
-  - [ ] Módulo `wallets` (regras e transações atômicas de carteira demo).
-  - [ ] Módulo `numbers` (estoque e geração de números virtuais).
-  - [ ] Módulo `orders` (ciclo de checkout e idempotência).
-- [ ] Testes de integração da API contra Firestore Emulator.
-- [ ] Script de deploy / manifesto Render (`render.yaml`).
+- [x] Estruturação de `apps/api` (Fastify + TypeScript + Socket.IO anexado).
+- [x] Configuração do Firebase Admin SDK com inicialização segura e fallback para emulador local.
+- [x] Middlewares fundamentais:
+  - [x] CORS configurado exclusivamente para as origens dos 3 frontends e localhost em dev.
+  - [x] Security headers (Helmet/CSP adaptada, HSTS, no-sniff, frame-ancestors).
+  - [x] Rate limiting adaptativo por IP e por sessão/token.
+  - [x] Autenticação Firebase ID Token (Bearer) com extração segura do `uid`.
+  - [x] Validador Zod universal para requests com RFC 7807 Problem Details.
+  - [x] Logger estruturado (Pino) com mascaramento de tokens e PII.
+- [x] Endpoints de saúde e inicialização:
+  - [x] `GET /health/live` (status do processo HTTP).
+  - [x] `GET /health/ready` (validação de conexão com Firestore e dependências críticas).
+  - [x] `GET /v1/public/config` (apenas parâmetros públicos do ecossistema).
+- [x] Estrutura modular:
+  - [x] Módulo `auth` (verificação de tokens e emissão de sessões anônimas/visitante).
+  - [x] Módulo `wallets` (regras e transações atômicas de carteira demo).
+  - [x] Módulo `numbers` (estoque e geração de números virtuais).
+  - [x] Módulo `orders` (ciclo de checkout e idempotência).
+- [x] Testes de integração da API contra Firestore Emulator.
+- [x] Script de deploy / manifesto Render (`render.yaml`).
 
 ---
 

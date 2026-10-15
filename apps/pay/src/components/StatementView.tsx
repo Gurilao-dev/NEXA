@@ -72,7 +72,7 @@ export const StatementView: React.FC<StatementViewProps> = ({
           <GlassInput
             placeholder="Buscar por descrição..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
             leftIcon={<Search className="w-4 h-4" />}
           />
         </div>

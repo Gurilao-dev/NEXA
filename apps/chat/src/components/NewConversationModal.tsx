@@ -88,7 +88,7 @@ export const NewConversationModal: React.FC<NewConversationModalProps> = ({
           <div className="flex gap-2">
             <GlassInput
               value={targetNumber}
-              onChange={(e) => setTargetNumber(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTargetNumber(e.target.value)}
               placeholder="+55 (11) 9XXXX-XXXX"
               className="flex-1 font-mono text-sm"
               required

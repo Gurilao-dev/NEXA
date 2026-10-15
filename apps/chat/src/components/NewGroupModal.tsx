@@ -85,7 +85,7 @@ export const NewGroupModal: React.FC<NewGroupModalProps> = ({
             </label>
             <GlassInput
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
               placeholder="Ex: Operações Alpha"
               required
               className="w-full text-sm"

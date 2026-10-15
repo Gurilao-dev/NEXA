@@ -101,7 +101,7 @@ export const PixModal: React.FC<PixModalProps> = ({
               label="Chave Interna NEXA do Destinatário"
               placeholder="ex: gst_abc123456..."
               value={recipientKey}
-              onChange={(e) => setRecipientKey(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRecipientKey(e.target.value)}
               required
             />
 
@@ -109,7 +109,7 @@ export const PixModal: React.FC<PixModalProps> = ({
               label="Valor Simulado (R$)"
               placeholder="0,00"
               value={amountStr}
-              onChange={(e) => setAmountStr(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmountStr(e.target.value)}
               required
             />
 
@@ -117,7 +117,7 @@ export const PixModal: React.FC<PixModalProps> = ({
               label="Descrição (Opcional)"
               placeholder="ex: Divisão do café fictício"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
             />
 
             {error && (

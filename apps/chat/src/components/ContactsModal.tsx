@@ -80,14 +80,14 @@ export const ContactsModal: React.FC<ContactsModalProps> = ({
           <div className="space-y-2">
             <GlassInput
               value={nexaNumber}
-              onChange={(e) => setNexaNumber(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNexaNumber(e.target.value)}
               placeholder="Número (+55 11 9XXXX-XXXX)"
               className="w-full text-xs font-mono"
               required
             />
             <GlassInput
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNickname(e.target.value)}
               placeholder="Apelido / Nome (opcional)"
               className="w-full text-xs"
             />

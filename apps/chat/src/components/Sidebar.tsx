@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase();
     const titleMatch = conv.title?.toLowerCase().includes(q);
-    const memberMatch = conv.memberUids?.some((u) => u.toLowerCase().includes(q));
+    const memberMatch = conv.memberUids?.some((u: string) => u.toLowerCase().includes(q));
     const lastMsgMatch = conv.lastMessage?.text?.toLowerCase().includes(q);
     return titleMatch || memberMatch || lastMsgMatch;
   });

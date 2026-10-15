@@ -95,7 +95,7 @@ function ChatMain() {
   // Iniciar chamada WebRTC
   const handleStartCall = async (type: 'AUDIO' | 'VIDEO') => {
     if (!activeConversation || !user) return;
-    const recipientUid = activeConversation.memberUids.find((u) => u !== user.uid);
+    const recipientUid = activeConversation.memberUids.find((u: string) => u !== user.uid);
     if (!recipientUid) return;
 
     setCallType(type);

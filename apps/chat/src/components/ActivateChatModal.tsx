@@ -112,7 +112,7 @@ export const ActivateChatModal: React.FC<ActivateChatModalProps> = ({
             </label>
             <GlassInput
               value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDisplayName(e.target.value)}
               placeholder="Como seus contatos vão te ver"
               required
               className="w-full text-sm"
@@ -125,7 +125,7 @@ export const ActivateChatModal: React.FC<ActivateChatModalProps> = ({
             </label>
             <GlassInput
               value={about}
-              onChange={(e) => setAbout(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAbout(e.target.value)}
               placeholder="Ex: Conectado via NEXA Mesh"
               className="w-full text-sm"
             />

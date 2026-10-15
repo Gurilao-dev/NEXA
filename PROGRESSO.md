@@ -54,7 +54,7 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
   - Execução de `typecheck` e compilação TypeScript com `tsc --noEmit` em todos os pacotes.
   - Validação estática de regras do Firestore e sintaxe Zod.
 - **Commits:**
-  - `chore(fase-0): initial project engineering setup and architecture baseline`
+  - `83db494` — `chore(fase-0): initial project engineering setup and architecture baseline`
 
 ---
 

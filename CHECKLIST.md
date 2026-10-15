@@ -130,21 +130,21 @@ Legenda:
 ---
 
 ## Fase 5 — Landing Cinematográfica da NEXA Mobile
-- [ ] Desenvolvimento de 8 a 12 seções narrativas contínuas:
-  - [ ] Preloader vetorial NEXA com animação líquida suave.
-  - [ ] Header flutuante glass com condensação no scroll e menu responsivo.
-  - [ ] Hero cinematográfico com mockup 3D original e iluminação volumétrica.
-  - [ ] Scroll-cinema A: montagem visual e nascimento do cartão de número virtual sincronizado ao scroll.
-  - [ ] Grade de benefícios com cartões de refração e microinterações.
-  - [ ] Scroll-cinema B: transformação do chip virtual em interface de chat fluida.
-  - [ ] Linha do tempo interativa "Como Funciona".
-  - [ ] Vitrine dinâmica de números virtuais consultando API em tempo real.
-  - [ ] Demonstração interativa lado a lado da carteira NEXA Pay.
-  - [ ] Tabela transparente de preços e aviso de créditos fictícios.
-  - [ ] FAQ completo sobre limitações, segurança e funcionalidades.
-  - [ ] CTA final imersivo e footer com links de privacidade e termos.
-- [ ] Controle de performance: orçamento de bytes, lazy loading de frames, suporte a `prefers-reduced-motion`.
-- [ ] Testes de responsividade mobile (360px, 390px, 430px) e desktop widescreen.
+- [x] Desenvolvimento de 8 a 12 seções narrativas contínuas:
+  - [x] Preloader vetorial NEXA com animação líquida suave.
+  - [x] Header flutuante glass com condensação no scroll e menu responsivo.
+  - [x] Hero cinematográfico com mockup 3D original e iluminação volumétrica.
+  - [x] Scroll-cinema A: montagem visual e nascimento do cartão de número virtual sincronizado ao scroll.
+  - [x] Grade de benefícios com cartões de refração e microinterações.
+  - [x] Scroll-cinema B: transformação do chip virtual em interface de chat fluida.
+  - [x] Linha do tempo interativa "Como Funciona".
+  - [x] Vitrine dinâmica de números virtuais consultando API em tempo real.
+  - [x] Demonstração interativa lado a lado da carteira NEXA Pay.
+  - [x] Tabela transparente de preços e aviso de créditos fictícios.
+  - [x] FAQ completo sobre limitações, segurança e funcionalidades.
+  - [x] CTA final imersivo e footer com links de privacidade e termos.
+- [x] Controle de performance: orçamento de bytes, lazy loading de frames, suporte a `prefers-reduced-motion`.
+- [x] Testes de responsividade mobile (360px, 390px, 430px) e desktop widescreen.
 
 ---
 

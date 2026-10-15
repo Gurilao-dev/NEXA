@@ -128,6 +128,31 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
 
 ---
 
+### Fase 5 — Landing Cinematográfica da NEXA Mobile (Concluída em 15/10/2026)
+- **Implementações:**
+  1. Criação do ecossistema visual cinematográfico em `apps/mobile/src/components/landing/`:
+     - `HeroScene.tsx`: visual 3D CSS puro com smartphone holográfico flutuante, chip SIM de plasma ciano rotativo, partículas luminosas e badges dinâmicos de ultra-baixa latência.
+     - `ScrollCinemaA.tsx`: jornada visual scroll-driven em 3 atos ("Sua Linha, Sem Burocracia", "O Núcleo Físico Se Desfaz", "Ativação Instantânea no NEXA Chat"), com animações puras e seletor interativo de passos.
+     - `BenefitsSection.tsx`: grid Liquid Glass de 4 pilares tecnológicos (Privacidade Férrea, Ativação em 1 Clique, Ecossistema Fluido, Multi-dispositivo sem SIM card) com micro-interações táteis e iluminação especular.
+     - `TimelineSection.tsx`: esteira interativa de 4 etapas (Escolha, Reserva, Pagamento Simulado e Posse Imediata) com indicador de progresso e conexão direta ao catálogo.
+     - `InteractiveDemo.tsx`: simulador interativo em tempo real do ecossistema, permitindo alternar operadora fictícia e testar discagem / roteamento.
+     - `FaqSection.tsx`: acordeão acessível com perguntas frequentes, esclarecendo a natureza das linhas virtuais, a segurança de posse e a integração com o NEXA Chat.
+     - `Footer.tsx`: rodapé institucional completo com disclaimer obrigatório de simulação financeira/telecom e links de navegação.
+     - `LandingPage.tsx`: orquestrador de narrativa cinematográfica fluida com navegação direta para o catálogo e área autenticada.
+  2. Atualização de `Navbar.tsx` com âncoras suaves para os pontos-chave da landing page (#experiencia, #beneficios, #etapas, #simulador, #duvidas).
+- **Testes e Validação:**
+  - `npm run typecheck --workspace=@nexa/mobile`: 0 erros de tipagem.
+  - `npm run build --workspace=@nexa/mobile`: bundle compilado com sucesso (355 kB JS, 34 kB CSS).
+
+---
+
 ## 3. Estado Atual e Próximos Passos
-- **O que está pronto:** Fases 0, 1, 2, 3 e 4 completamente operacionais e testadas.
-- **Próxima fase:** **Fase 5 — Landing Cinematográfica da NEXA Mobile** (Página cinematográfica contínua com mockup 3D original, narrativa visual scroll-scrub de nascimento do número e transformação em chat, timeline e FAQs).
+- **O que está pronto:** Fases 0, 1, 2, 3, 4 e 5 completamente operacionais, integradas e testadas.
+- **Próxima fase:** **Fase 6 — NEXA Chat MVP Persistente (Site 3)**
+  - Criação da aplicação `apps/chat` (Vite + React 19 + Tailwind CSS + Lucide + Socket.IO Client).
+  - Autenticação e gatekeeping de posse de número virtual (`POST /v1/chat/activate`).
+  - Layout 2 colunas Liquid Glass (Emerald & Deep Teal), mobile-first com glass dock.
+  - Conexão realtime com namespace `/chat` do Fastify via Socket.IO com handshake autenticado.
+  - Conversas 1:1 persistentes com sincronização Firestore + ACK deduplicado (`clientMessageId`).
+  - Indicadores em tempo real: digitando, online/offline, status da mensagem (enviando, enviada, entregue, lida).
+

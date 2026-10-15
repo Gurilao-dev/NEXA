@@ -4,6 +4,7 @@ import { mobileApi } from './services/api.js';
 import { VirtualNumber } from '@nexa/types';
 import { ColdStartOverlay, BackendState } from '@nexa/ui';
 import { Navbar } from './components/Navbar.js';
+import { LandingPage } from './components/landing/LandingPage.js';
 import { CatalogView } from './components/CatalogView.js';
 import { MyNumbersView } from './components/MyNumbersView.js';
 import { OrdersView } from './components/OrdersView.js';
@@ -13,7 +14,7 @@ import { NumberDetailModal } from './components/NumberDetailModal.js';
 const MainContent: React.FC = () => {
   const { user } = useAuth();
   const [backendState, setBackendState] = useState<BackendState>('backendStarting');
-  const [currentTab, setCurrentTab] = useState<string>('catalog');
+  const [currentTab, setCurrentTab] = useState<string>('landing');
   const [selectedNumber, setSelectedNumber] = useState<VirtualNumber | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [orderIdFromUrl, setOrderIdFromUrl] = useState<string | null>(null);
@@ -77,6 +78,7 @@ const MainContent: React.FC = () => {
 
       {/* Conteúdo da Aba Ativa */}
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+        {currentTab === 'landing' && <LandingPage onGoToCatalog={() => setCurrentTab('catalog')} />}
         {currentTab === 'catalog' && <CatalogView onSelectNumber={handleSelectNumber} />}
         {currentTab === 'my-numbers' && <MyNumbersView onGoToCatalog={() => setCurrentTab('catalog')} />}
         {currentTab === 'orders' && (

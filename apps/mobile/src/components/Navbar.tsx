@@ -26,6 +26,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
         {/* Links Centrais de Navegação */}
         <nav className="hidden md:flex items-center gap-1 p-1 rounded-2xl bg-white/[0.04] border border-white/10 text-xs">
           <button
+            onClick={() => onSelectTab('landing')}
+            className={`px-4 py-2 rounded-xl font-medium transition-all ${
+              currentTab === 'landing'
+                ? 'bg-gradient-to-r from-sky-500/80 to-indigo-600/80 text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            Início
+          </button>
+
+          <button
             onClick={() => onSelectTab('catalog')}
             className={`px-4 py-2 rounded-xl font-medium transition-all ${
               currentTab === 'catalog'

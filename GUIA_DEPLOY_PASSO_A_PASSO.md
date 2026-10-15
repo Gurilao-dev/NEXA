@@ -127,7 +127,7 @@ O backend Fastify + Socket.IO fica no Render Web Service.
 1. Acesse [Render.com](https://render.com/) e crie sua conta (pode entrar com o GitHub).
 2. Clique no botão **New +** no topo ➔ selecione **Web Service**.
 3. Selecione a opção **"Build and deploy from a Git repository"** e clique em **Next**.
-4. Conecte sua conta do GitHub e selecione o repositório **`dev-gurila/NEXA`**.
+4. Conecte sua conta do GitHub e selecione o repositório **`Gurilao-dev/NEXA`**.
 5. Preencha as configurações básicas:
    - **Name:** `nexa-api`
    - **Region:** `Ohio (US East)` ou `Frankfurt`
@@ -179,7 +179,7 @@ Na Vercel, você vai importar o **mesmo repositório 3 vezes**, uma para cada ap
 ### Passo 5.1 — Publicar o NEXA Pay (Site 1)
 1. Acesse [Vercel.com](https://vercel.com/) e entre com seu GitHub.
 2. Clique em **Add New...** ➔ **Project**.
-3. Escolha o repositório `dev-gurila/NEXA`.
+3. Escolha o repositório `Gurilao-dev/NEXA`.
 4. Em **Project Name**, coloque: `nexa-pay`.
 5. Em **Root Directory**, clique em **Edit** e selecione a pasta: `apps/pay`.
 6. Em **Framework Preset**, selecione **Vite**.
@@ -194,7 +194,7 @@ Na Vercel, você vai importar o **mesmo repositório 3 vezes**, uma para cada ap
 
 ### Passo 5.2 — Publicar a NEXA Mobile (Site 2)
 1. Na Vercel, clique novamente em **Add New...** ➔ **Project**.
-2. Escolha o mesmo repositório `dev-gurila/NEXA`.
+2. Escolha o mesmo repositório `Gurilao-dev/NEXA`.
 3. Em **Project Name**, coloque: `nexa-mobile`.
 4. Em **Root Directory**, selecione: `apps/mobile`.
 5. Em **Framework Preset**, selecione **Vite**.
@@ -211,7 +211,7 @@ Na Vercel, você vai importar o **mesmo repositório 3 vezes**, uma para cada ap
 
 ### Passo 5.3 — Publicar o NEXA Chat (Site 3)
 1. Na Vercel, clique novamente em **Add New...** ➔ **Project**.
-2. Escolha o repositório `dev-gurila/NEXA`.
+2. Escolha o repositório `Gurilao-dev/NEXA`.
 3. Em **Project Name**, coloque: `nexa-chat`.
 4. Em **Root Directory**, selecione: `apps/chat`.
 5. Em **Framework Preset**, selecione **Vite**.

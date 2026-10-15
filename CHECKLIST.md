@@ -85,25 +85,25 @@ Legenda:
 ---
 
 ## Fase 3 — NEXA Pay Completo (Site 1)
-- [ ] Configuração do app `apps/pay` com Vite, React, TypeScript e Tailwind CSS.
-- [ ] Identidade visual: base Dark Navy / Azul Glacial profundo, números tipográficos com peso premium.
-- [ ] Aviso explícito persistente e indelével: "AMBIENTE DE SIMULAÇÃO — NÃO É DINHEIRO REAL".
-- [ ] Integração com Firebase Anonymous Auth para criação de sessão visitante única.
-- [ ] Backend Ledger seguro:
-  - [ ] Concessão única de R$ 300,00 (30.000 centavos) por carteira no servidor.
-  - [ ] Prevenção de re-concessão abusiva.
-  - [ ] Transações atômicas no Firestore com registro imutável em `walletLedger`.
-  - [ ] Idempotência rigorosa com `walletOperations`.
-- [ ] Telas e funcionalidades:
-  - [ ] Dashboard com saldo, botão ocultar/exibir, cartões de ação rápida.
-  - [ ] Onboarding educativo sobre a natureza temporária e descartável da carteira.
-  - [ ] Pix simulado interno (envio entre chaves NEXA com validação do recebedor pelo backend).
-  - [ ] Recebimento Pix simulado com QR code interno NEXA (sem payload BR Code bancário).
-  - [ ] Extrato paginado com filtros (entradas/saídas, data, busca) e agrupamento por dia.
-  - [ ] Detalhe de transação e Comprovante visualmente elegante com carimbo "SIMULADO".
-  - [ ] Tela de confirmação de Checkout mediado por ticket temporário.
-- [ ] Tratamento de erros de UX: saldo insuficiente, transação duplicada, offline, ticket expirado.
-- [ ] Testes de concorrência e idempotência contra o backend.
+- [x] Configuração do app `apps/pay` com Vite, React, TypeScript e Tailwind CSS.
+- [x] Identidade visual: base Dark Navy / Azul Glacial profundo, números tipográficos com peso premium.
+- [x] Aviso explícito persistente e indelével: "AMBIENTE DE SIMULAÇÃO — NÃO É DINHEIRO REAL".
+- [x] Integração com Firebase Anonymous Auth para criação de sessão visitante única.
+- [x] Backend Ledger seguro:
+  - [x] Concessão única de R$ 300,00 (30.000 centavos) por carteira no servidor.
+  - [x] Prevenção de re-concessão abusiva.
+  - [x] Transações atômicas no Firestore com registro imutável em `walletLedger`.
+  - [x] Idempotência rigorosa com `walletOperations`.
+- [x] Telas e funcionalidades:
+  - [x] Dashboard com saldo, botão ocultar/exibir, cartões de ação rápida.
+  - [x] Onboarding educativo sobre a natureza temporária e descartável da carteira.
+  - [x] Pix simulado interno (envio entre chaves NEXA com validação do recebedor pelo backend).
+  - [x] Recebimento Pix simulado com QR code interno NEXA (sem payload BR Code bancário).
+  - [x] Extrato paginado com filtros (entradas/saídas, data, busca) e agrupamento por dia.
+  - [x] Detalhe de transação e Comprovante visualmente elegante com carimbo "SIMULADO".
+  - [x] Tela de confirmação de Checkout mediado por ticket temporário.
+- [x] Tratamento de erros de UX: saldo insuficiente, transação duplicada, offline, ticket expirado.
+- [x] Testes de concorrência e idempotência contra o backend.
 
 ---
 

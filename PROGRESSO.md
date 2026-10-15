@@ -15,7 +15,7 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
 | **0** | **Engenharia do Projeto** | **Concluída** | 2026-10-15 | Compilação de pacotes, linters, schemas |
 | **1** | **Fundação Backend + Firebase** | **Concluída** | 2026-10-15 | 6 testes Vitest (health, wallets, orders, checkouts) |
 | **2** | **Design System Liquid Glass** | **Concluída** | 2026-10-15 | Compilação tsc, testes de componentes e classes |
-| 3 | NEXA Pay Completo | Aguardando | — | — |
+| **3** | **NEXA Pay Completo** | **Concluída** | 2026-10-15 | Build Vite/React, carteira demo R$ 300, extrato, Pix e checkout |
 | 4 | NEXA Mobile Funcional | Aguardando | — | — |
 | 5 | Landing Cinematográfica da Mobile | Aguardando | — | — |
 | 6 | NEXA Chat MVP Persistente | Aguardando | — | — |
@@ -95,8 +95,24 @@ Este documento é atualizado ao final de cada fase de engenharia, servindo como 
   - `npm run build --workspace=@nexa/ui`: compilação limpa gerando arquivos `.d.ts` e `.js`.
   - `npm run test --workspace=@nexa/ui`: testes unitários de classes e componentes aprovados com sucesso.
 
+### Fase 3 — NEXA Pay Completo (Site 1) (2026-10-15)
+- **Atividades executadas:**
+  1. Criação do workspace `apps/pay` configurado com Vite, React 19, TypeScript e Tailwind CSS.
+  2. Implementação da identidade visual Dark Navy / Glacial Blue com mesh gradient sutil e tipografia Outfit/Inter.
+  3. Adição do banner persistente de aviso de simulação: "AMBIENTE DE SIMULAÇÃO — CRÉDITOS VIRTUAIS SEM VALOR MONETÁRIO REAL".
+  4. Integração com API via cliente tipado `PayApiClient` com armazenamento local do token de visitante (`nexa_pay_guest_token`).
+  5. Criação do `BalanceCard` com valor formatado em BRL (R$ 300,00), botão de ocultar/exibir saldo e cópia da chave Pix interna.
+  6. Criação do `PixModal` com abas para envio de créditos (com conversão para centavos inteiros e validação) e recebimento com exibição de chave e QR code simulado original.
+  7. Criação do `StatementView` com extrato paginado, filtros (todas, entradas, saídas), busca em tempo real e visualização de comprovante.
+  8. Criação do `ReceiptModal` com layout de comprovante e marca d'água "SIMULADO / SEM VALOR FISCAL OU BANCÁRIO".
+  9. Criação do `CheckoutView` mediado pelo parâmetro `?ticket=...` para exibição de dados da compra originada na NEXA Mobile e confirmação de pagamento simulado atômico.
+  10. Integração com o `ColdStartOverlay` universal para tratamento suave de cold start do Render.
+- **Testes executados:**
+  - `npm run typecheck --workspace=@nexa/pay`: 0 erros de tipagem.
+  - `npm run build --workspace=@nexa/pay`: geração limpa do bundle de produção (dist/assets/index.js: 305 kB, gzip: 91 kB).
+
 ---
 
 ## 3. Estado Atual e Próximos Passos
-- **O que está pronto:** Fases 0, 1 e 2 completamente operacionais e testadas.
-- **Próxima fase:** **Fase 3 — NEXA Pay Completo (Site 1)** (Aplicação Vite + React para o banco virtual simulado com saldo de R$ 300,00, extrato, Pix simulado, comprovantes e tela de checkout integrado).
+- **O que está pronto:** Fases 0, 1, 2 e 3 completamente operacionais e testadas.
+- **Próxima fase:** **Fase 4 — NEXA Mobile Funcional (Site 2)** (Aplicação Vite + React para a operadora virtual simulada com autenticação Google, catálogo de números, checkout com NEXA Pay, área logada Meus Números e atalho para o chat).

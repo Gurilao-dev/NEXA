@@ -1,6 +1,30 @@
 import { TelecomOrder, VirtualNumber, AuthUser } from '@nexa/types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:10000';
+const isProd = import.meta.env.PROD;
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+
+// Em produção, NUNCA utilizar localhost como fallback.
+// Em desenvolvimento, permitir fallback para http://localhost:10000.
+const resolveApiBaseUrl = (): string => {
+  if (rawBaseUrl) {
+    return rawBaseUrl.replace(/\/+$/, '');
+  }
+  if (!isProd) {
+    return 'http://localhost:10000';
+  }
+  return '';
+};
+
+export const API_BASE_URL = resolveApiBaseUrl();
+
+export const isApiConfigured = Boolean(API_BASE_URL);
+
+export const CONFIG_ERROR_MESSAGE =
+  'Configuração de API ausente: A variável VITE_API_BASE_URL não foi definida durante a compilação para produção. Adicione a URL pública do backend no Render nas variáveis de ambiente da Vercel (ex: https://nexa-api.onrender.com) e realize um novo deploy.';
+
+if (isProd && !isApiConfigured) {
+  console.error(`[NEXA Mobile] ${CONFIG_ERROR_MESSAGE}`);
+}
 
 class MobileApiClient {
   private authToken: string | null = null;
@@ -10,6 +34,11 @@ class MobileApiClient {
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+    if (!API_BASE_URL) {
+      console.error(`[NEXA Mobile] Requisição impedida por falta de configuração: ${endpoint}`);
+      throw new Error(CONFIG_ERROR_MESSAGE);
+    }
+
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       ...((options.headers as Record<string, string>) || {}),
@@ -38,6 +67,9 @@ class MobileApiClient {
   }
 
   async checkHealth(): Promise<{ status: string }> {
+    if (!API_BASE_URL) {
+      throw new Error(CONFIG_ERROR_MESSAGE);
+    }
     return this.request<{ status: string }>('/health/ready');
   }
 

@@ -7,6 +7,8 @@ declare module 'fastify' {
     user?: {
       uid: string;
       email?: string | null;
+      displayName?: string | null;
+      photoURL?: string | null;
       isGuest?: boolean;
     };
   }
@@ -42,9 +44,12 @@ export async function requireAuth(request: FastifyRequest, reply: FastifyReply) 
     request.user = {
       uid: decoded.uid,
       email: decoded.email || null,
+      displayName: (decoded as any).name || null,
+      photoURL: (decoded as any).picture || null,
       isGuest: false,
     };
   } catch (err: any) {
+    request.log.warn({ errorCode: err?.code, errorMessage: err?.message }, 'Falha na verificação do token Firebase');
     throw new AppError(
       'Token de autorização inválido ou expirado.',
       401,

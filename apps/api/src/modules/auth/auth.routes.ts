@@ -33,8 +33,8 @@ export async function authRoutes(fastify: FastifyInstance) {
       const newUser = {
         uid: user.uid,
         email: user.email || null,
-        displayName: user.email?.split('@')[0] || 'Usuário NEXA',
-        photoURL: null,
+        displayName: user.displayName || user.email?.split('@')[0] || 'Usuário NEXA',
+        photoURL: user.photoURL || null,
         primaryNumberId: null,
         createdAt: now,
         updatedAt: now,

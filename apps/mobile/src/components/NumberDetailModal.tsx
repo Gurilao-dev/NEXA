@@ -29,9 +29,21 @@ export const NumberDetailModal: React.FC<NumberDetailModalProps> = ({
     currency: 'BRL',
   });
 
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      await loginWithGoogle();
+    } catch (err: any) {
+      setError(err?.message || 'Falha ao autenticar com o Google.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCheckout = async () => {
     if (!user) {
-      await loginWithGoogle();
+      await handleGoogleLogin();
       return;
     }
 
@@ -113,7 +125,7 @@ export const NumberDetailModal: React.FC<NumberDetailModalProps> = ({
               variant="primary"
               size="lg"
               loading={loading}
-              onClick={loginWithGoogle}
+              onClick={handleGoogleLogin}
               icon={<LogIn className="w-4 h-4" />}
             >
               Entrar com Google para Comprar

@@ -120,16 +120,27 @@ export function initializeFirebase() {
 
   if (env.FIREBASE_PROJECT_ID && env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY) {
     try {
-      const privateKey = env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n');
-      admin.initializeApp({
-        credential: admin.credential.cert({
-          projectId: env.FIREBASE_PROJECT_ID,
-          clientEmail: env.FIREBASE_CLIENT_EMAIL,
-          privateKey,
-        }),
-      });
-      firestoreDb = admin.firestore();
-      authAdmin = admin.auth();
+      let privateKey = env.FIREBASE_PRIVATE_KEY.trim();
+      if (
+        (privateKey.startsWith('"') && privateKey.endsWith('"')) ||
+        (privateKey.startsWith("'") && privateKey.endsWith("'"))
+      ) {
+        privateKey = privateKey.slice(1, -1);
+      }
+      privateKey = privateKey.replace(/\\n/g, '\n').replace(/\r/g, '');
+
+      const app =
+        admin.apps.length > 0
+          ? admin.app()
+          : admin.initializeApp({
+              credential: admin.credential.cert({
+                projectId: env.FIREBASE_PROJECT_ID,
+                clientEmail: env.FIREBASE_CLIENT_EMAIL,
+                privateKey,
+              }),
+            });
+      firestoreDb = admin.firestore(app);
+      authAdmin = admin.auth(app);
       isFirebaseInitialized = true;
       console.log('✅ Firebase Admin SDK inicializado com credenciais reais.');
       return { db: firestoreDb, auth: authAdmin, isMock: false };

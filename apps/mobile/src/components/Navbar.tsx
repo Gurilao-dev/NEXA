@@ -108,7 +108,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onSelectTab }) => {
               variant="primary"
               size="sm"
               icon={<LogIn className="w-3.5 h-3.5" />}
-              onClick={loginWithGoogle}
+              onClick={async () => {
+                try {
+                  await loginWithGoogle();
+                } catch {
+                  // Erro já tratado no contexto
+                }
+              }}
             >
               Entrar com Google
             </GlassButton>
